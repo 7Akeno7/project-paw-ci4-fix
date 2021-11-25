@@ -19,6 +19,8 @@ class CreateEbook extends Migration
             'bahasa'           => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'sinopsis'         => ['type' => 'varchar', 'constraint' => 2000],
             'viewers'          => ['type' => 'int', 'constraint' => 11, 'default' => 0],
+            'sampul'           => ['type' => 'varchar', 'constraint' => 255],
+            'file'             => ['type' => 'varchar', 'constraint' => 255],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true]
         ];
