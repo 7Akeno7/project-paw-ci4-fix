@@ -20,3 +20,5 @@ INSERT INTO `auth_permissions` (`id`, `name`, `description`) VALUES
 (2, 'manage-user', 'dapat melakukan CRUD pada user'),
 (3, 'manage-profile', 'dapat melakukan edit profile'),
 (4, 'manage-ebook', 'dapat melakukan CRUD pada ebook');
+
+Nanti user yang register bakal langsung dapet role user, kalo kalian mau ubah jadi admin, di phpMyAdmin update tabel auth_groups_users, kalian ganti group ID nya dari 2 jadi 1 di row yang user_id nya pengen kalian ubah jadi admin
