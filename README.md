@@ -1,6 +1,6 @@
 Tutorial set up:
 1. Buka file .env, ganti username, password, sama nama database sesuai komputer klean
-2. Di VS Code, buka file ci4login\vendor\myth\auth\src\Database\Migrations\2017-11-20-223112_create_auth_tables.php Klik ctrl + backtick(`)
+2. Di VS Code, buka file vendor\myth\auth\src\Database\Migrations\2017-11-20-223112_create_auth_tables.php Klik ctrl + backtick(`)
 3. jalankan perintah 'php spark migrate -all'
 4. Buka phpMyAdmin, seharusnya tabel sudah dibuat di database kalian
 5. Jalankan query berikut di phpMyAdmin
