@@ -1,6 +1,6 @@
 Tutorial set up:
 1. Buka file .env, ganti username, password, sama nama database sesuai komputer klean
-2. Di VS Code, buka file ci4login\vendor\myth\auth\src\Database\Migrations\2017-11-20-223112_create_auth_tables.php Klik ctrl + backtick(`)
+2. Di VS Code, buka file vendor\myth\auth\src\Database\Migrations\2017-11-20-223112_create_auth_tables.php Klik ctrl + backtick(`)
 3. jalankan perintah 'php spark migrate -all'
 4. Buka phpMyAdmin, seharusnya tabel sudah dibuat di database kalian
 5. Jalankan query berikut di phpMyAdmin
@@ -20,3 +20,5 @@ INSERT INTO `auth_permissions` (`id`, `name`, `description`) VALUES
 (2, 'manage-user', 'dapat melakukan CRUD pada user'),
 (3, 'manage-profile', 'dapat melakukan edit profile'),
 (4, 'manage-ebook', 'dapat melakukan CRUD pada ebook');
+
+Nanti user yang register bakal langsung dapet role user, kalo kalian mau ubah jadi admin, di phpMyAdmin update tabel auth_groups_users, kalian ganti group ID nya dari 2 jadi 1 di row yang user_id nya pengen kalian ubah jadi admin
