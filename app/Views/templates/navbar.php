@@ -56,6 +56,7 @@
               placeholder="Search now"
               aria-label="search"
               aria-describedby="search"
+              name="cari"
             />
           </form>
         </div>
