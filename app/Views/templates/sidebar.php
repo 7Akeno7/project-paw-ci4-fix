@@ -20,7 +20,7 @@
           <?php if(in_groups('admin')) { ?>
           <li class="
             nav-item
-            <?= isset($segments[1]) && $segments[1] == 'userList' ? 
+            <?= isset($segments[1]) && $segments[1] == 'index' ? 
               'active' : ''; ?>
           ">
             <a
@@ -61,12 +61,12 @@
           ">
             <a
               class="nav-link"
-              href="<?= route_to('listBuku'); ?>"
+              href="<?= route_to('formTambahBuku'); ?>"
               aria-expanded="false"
               aria-controls="auth"
             >
               <i class="icon-grid-2 menu-icon""></i>
-              <span class="menu-title">List Buku</span>
+              <span class="menu-title">Form Tambah Buku</span>
             </a>
           </li>
           <?php } ?>

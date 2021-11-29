@@ -14,10 +14,10 @@ class PenulisModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_penulis', 'created_at', 'updated_at']; 
+    protected $allowedFields    = ['nama_penulis']; 
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

@@ -8,7 +8,7 @@
       <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Tambah Penulis</h4>
+            <h4 class="card-title">Ubah Penulis</h4>
             <?php if(session()->getFlashdata('Gagal')): ?>
             <div class="alert alert-danger mt-3" role="alert">
               <?= session()->getFlashdata('Gagal'); ?>
@@ -16,7 +16,7 @@
             <?php endif; ?>
             <form 
               class="forms-sample"
-              action="<?= route_to('tambahPenulis');?>"
+              action="<?= route_to('ubahPenulis');?>"
               method="post"
             >
               <?= csrf_field(); ?>
@@ -27,12 +27,12 @@
                   class="form-control"
                   name="nama_penulis"
                   id="exampleInputUsername1"
-                  placeholder="Nama Penulis"
+                  value="<?= old('nama_penulis' ,$penulis->nama_penulis) ?>"
                   required
                 />
+                <input type="hidden" name="id" value="<?= $penulis->id ?>">
               </div>
-              <input type="submit" class="btn btn-primary mr-2" name='tambah'>
-             
+              <input type="submit" class="btn btn-primary mr-2" name="ubah">
             </form>
           </div>
         </div>

@@ -11,24 +11,33 @@
             <h2 class="font-weight-bold">My Profile</h2>
           </div>
         </div>
+        <div class="row">
+          <div class="col-12 col-xl-12">
+            <?php if(session()->getFlashdata('Sukses')): ?>
+            <div class="alert alert-success mt-3" role="alert">
+              <?= session()->getFlashdata('Sukses'); ?>
+            </div>
+            <?php endif; ?>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class ="col-md-7 grid-margin stretch-card" style="margin: 0 auto;">
+      <div class="col-md-7 grid-margin stretch-card" style="margin: 0 auto;">
         <div class="card data-icon-card-primary">
           <div class="card-body">
             <div class="name" style="text-align: center;">
               <h3><?= user()->nama_user; ?></h3>
             </div>
             <div class="table-responsive">
-              <table class ="table">
+              <table class="table">
                 <tbody>
                   <tr>
                     <td>
                       <p class="text-white"><strong>Email</strong></p>
                     </td>
                     <td>
-                      <p class="text-white"><?=user()->email?></p>
+                      <p class="text-white"><?= user()->email ?></p>
                     </td>
                   </tr>
                   <tr>
@@ -36,18 +45,33 @@
                       <p class="text-white"><strong>Username</strong></p>
                     </td>
                     <td>
-                      <p class="text-white"><?=user()->username?></p>
+                      <p class="text-white"><?= user()->username ?></p>
                     </td>
                   </tr>
+                  <?php if(in_groups('admin')): ?>
+                  <tr>
+                    <td>
+                      <p class="text-white"><strong>Role</strong></p>
+                    </td>
+                    <td>
+                      <p class="text-white">Admin</p>
+                    </td>
+                  </tr>
+                  <?php endif; ?>
                 </tbody>
               </table>
+              <a href="<?= base_url("/user/formUbahNama") ?>">
+                <button type="button" class="btn btn-warning btn-sm">
+                  Ubah Nama</button
+                >
+              </a>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
       <div class="col-lg-12 grid-margin stretch-card" style="margin-top: 25px;">
         <div class="card">
-          <div class="card-body" >
+          <div class="card-body">
             <h4 class="card-title">Downloaded Books</h4>
             <div class="table-responsive">
               <table class="table table-hover">
@@ -59,31 +83,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Pemrograman Dasar</td>
-                    <td><label class="badge badge-info">Teknologi</label></td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Pemrograman Lanjut</td>
-                    <td><label class="badge badge-dark">Sains</label></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Algoritma dan Struktur Data</td>
-                    <td><label class="badge badge-success">Lingkungan</label></td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Algoritma dan Struktur Data</td>
-                    <td><label class="badge badge-warning">Sosial</label></td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Algoritma dan Struktur Data</td>
-                    <td><label class="badge badge-primary">Kesenian</label></td>
-                  </tr>
+                  <?php foreach ($books as $book) : ?>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <a href="<?= base_url("buku/detailBuku/$book->slug"); ?>" target="_blank">
+                          <?= $book->judul ?>
+                        </a>
+                      </td>
+                      <td>
+                        <label class="badge <?= $book->badge ?>">
+                          <?= $book->kategori; ?>
+                        </label>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>

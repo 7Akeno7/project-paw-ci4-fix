@@ -9,6 +9,11 @@
         <div class="col">
           <div class="book_list">
             <h1 class="mt-1">Daftar Buku</h1>
+            <?php if(session()->getFlashdata('Sukses')): ?>
+            <div class="alert alert-success mt-3" role="alert">
+              <?= session()->getFlashdata('Sukses'); ?>
+            </div>
+            <?php endif; ?>
             <a href = "<?= route_to('formTambahBuku'); ?>">
               <button type="button" class="btn btn-success"
               >Tambah Buku</button>
@@ -17,10 +22,10 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Cover</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Sampul</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Book's Detail</th>
+                    <th scope="col">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -35,7 +40,11 @@
                       />
                     </td>
                     <td>Pemrograman Dasar</td>
-                    <td><a href="" class="btn btn-success">Detail</a></td>
+                    <td>
+                      <a href="" class="btn btn-success">Detail</a>
+                      <a href="" class="btn btn-info">Edit</a>
+                      <a href="" class="btn btn-danger">Delete</a>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>

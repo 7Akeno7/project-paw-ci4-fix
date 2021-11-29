@@ -4,11 +4,24 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
+    public function __construct()
+    {
+        $this->model = new \App\Models\BukuModel();
+    }
     public function index()
     {
+        $current_page = $this->request->getVar('page_ebook') ? 
+        $this->request->getVar('page_ebook') : 1;
+
+        $pageNo= 1 + (($current_page - 1) * 6);
+
         $this->data = [
             'title' => 'Landing Page',
-            'config' => config('Auth')
+            'config' => config('Auth'),
+            // 'listBuku' => $this->model->getAllBooks()
+            'listBuku' => $this->model->paginate(6, 'ebook'),
+            'pager' => $this->model->pager,
+            'pageNo' => $pageNo
         ];
         return view('main-page/index', $this->data);
     }

@@ -7,10 +7,10 @@
     <div class="col-12 grid-margin">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Tambah Buku</h4>
+          <h4 class="card-title">Ubah Buku</h4>
           <form
             class="form-sample"
-            action="<?= route_to('tambahBuku'); ?>"
+            action="<?= route_to('ubahBuku'); ?>"
             method="post"
             enctype="multipart/form-data"
           >
@@ -29,12 +29,14 @@
                         <?= isset($error['judul']) ? 'is-invalid': ''; ?>
                       " 
                       name="judul"
-                      value = "<?= old('judul'); ?>"
+                      value = "<?= $isRepeat ? old('judul') : $buku->judul; ?>"
                       required
                     />
                     <div class="invalid-feedback">
                       <?= isset($error['judul']) ? $error['judul'] : ''; ?>
                     </div>
+                    <input type="hidden" name="slug" value='<?= $buku->slug; ?>'>
+                    <input type="hidden" name="id" value='<?= $buku->id; ?>'>
                   </div>
                 </div>
               </div>
@@ -48,7 +50,7 @@
                       <?php foreach ($kategori as $k) : ?>
                         <option 
                           value="<?= $k; ?>"
-                          <?= old('kategori') == $k ? 'selected' : ''; ?>
+                          <?= $kategoriBuku == $k ? 'selected' : ''; ?>
                         ><?= $k; ?></option>
                       <?php endforeach; ?>	
                     </select>
@@ -72,7 +74,7 @@
                     <?php foreach($penulis as $value) : ?>
                       <option 
                         value="<?= $value->id ?>"
-                        <?= in_array($value->id, $oldPenulis) ? 
+                        <?= in_array($value->id, $penulisBuku) ? 
                           'selected' : ''; ?>
                       >
                         <?=$value->id.' - '.$value->nama_penulis; ?>
@@ -92,8 +94,8 @@
                       type="number"
                       class="form-control"
                       name="tahunTerbit"
-                      value="<?= old('tahunTerbit') == '' ? 
-                      date('Y'): old('tahunTerbit')?>"
+                      value="<?= $isRepeat ? 
+                      old('tahunTerbit'): $buku->tahun_terbit ?>"
                       max = <?= date('Y') ?>
                       required
                     />
@@ -108,11 +110,11 @@
                     >Halaman</label
                   >
                   <div class="col-sm-9">
-                  <input
+                    <input
                       type="number"
                       class="form-control"
                       name="halaman"
-                      value="<?= old('halaman') ?>"
+                      value="<?= $isRepeat ? old('halaman'): $buku->halaman ?>"
                       required
                     />
                   </div>
@@ -128,7 +130,7 @@
                       type="text"
                       class="form-control" 
                       name="bahasa"
-                      value="<?= old('bahasa') ?>" 
+                      value="<?= $isRepeat ? old('bahasa'): $buku->bahasa ?>" 
                       required
                     />
                   </div>
@@ -146,7 +148,8 @@
                       rows="8"
                       name="sinopsis"
                       required
-                    ><?= old('sinopsis') ?></textarea>               
+                    ><?= $isRepeat ? old('sinopsis'): $buku->sinopsis ?>
+                  </textarea>               
                   </div>
                 </div>
               </div>
@@ -161,7 +164,6 @@
                       name="cover"
                       class="file-upload-default"
                       accept="image/png, image/jpg, image/jpeg"
-                      required
                     />
                     <div class="input-group col-xs-12">
                       <input
@@ -173,7 +175,6 @@
                         "
                         disabled
                         placeholder=".jpg/.jpeg/.png"
-                        required
                       />
                       <span class="input-group-append">
                         <button
@@ -212,7 +213,6 @@
                         "
                         disabled
                         placeholder=".pdf"
-                        required
                       />
                       <span class="input-group-append">
                         <button
@@ -230,9 +230,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary mr-2">
-              Submit
-            </button>
+            <input type="submit" name='ubah' class="btn btn-primary mr-2">
             <a href="<?= route_to('listPenulis');?>">
               <button class="btn btn-light">Cancel</button>
             </a>

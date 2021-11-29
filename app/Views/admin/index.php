@@ -11,6 +11,15 @@
             <h2 class="font-weight-bold">List User</h2>
           </div>
         </div>
+        <div class="row">
+          <div class="col-12 col-xl-12">
+            <?php if(session()->getFlashdata('Sukses')): ?>
+            <div class="alert alert-success mt-3" role="alert">
+              <?= session()->getFlashdata('Sukses'); ?>
+            </div>
+            <?php endif; ?>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -42,11 +51,23 @@
                       <?php else : ?>
                       <td><label class="badge badge-success">user</td>
                       <td>
-                        <a href="#">
-                          <button type="button" class="btn btn-danger btn-sm">
-                            hapus</button
+                        <form
+                          action="<?= route_to('hapusUser') ?>"
+                          method="post"
+                          class="d-inline"
+                        >
+                          <input type="hidden" name="id3" value="<?= $user->id ?>">
+                          <input type="hidden" name="hapus3" value="hapus">
+                          <button
+                            type="submit"
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm(
+                              `Apakah anda yakin ingin menghapus user ini?`
+                            )"
                           >
-                        </a>
+                            Hapus User
+                          </button>
+                        </form>
                       </td>
                       <?php endif; ?>
                       

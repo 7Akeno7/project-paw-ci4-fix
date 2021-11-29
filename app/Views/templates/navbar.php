@@ -48,21 +48,25 @@
               <i class="icon-search"></i>
             </span>
           </div>
-          <input
-            type="text"
-            class="form-control"
-            id="navbar-search-input"
-            placeholder="Search now"
-            aria-label="search"
-            aria-describedby="search"
-          />
+          <form action="buku/cariBuku">
+            <input
+              type="text"
+              class="form-control"
+              id="navbar-search-input"
+              placeholder="Search now"
+              aria-label="search"
+              aria-describedby="search"
+            />
+          </form>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item nav-profile dropdown">
         <a
-          href="<?= base_url('logout'); ?>"
+          href="<?php if(logged_in()) 
+          echo base_url('logout'); 
+          else echo base_url('login'); ?>"
         >
           <button
             type="button"

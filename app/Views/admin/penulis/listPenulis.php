@@ -21,9 +21,9 @@
               <button type="button" class="btn btn-success"
               >Tambah Penulis</button>
             </a>
-            <?php if(session()->getFlashdata('pesan')): ?>
+            <?php if(session()->getFlashdata('Sukses')): ?>
             <div class="alert alert-success mt-3" role="alert">
-              <?= session()->getFlashdata('pesan'); ?>
+              <?= session()->getFlashdata('Sukses'); ?>
             </div>
             <?php endif; ?>
             <div class="table-responsive">
@@ -41,16 +41,28 @@
                     <td><?= $val->id ?></td>
                     <td><?= $val->nama_penulis ?></td>
                     <td>
-                    <a href="#">
-                      <button type="button" class="btn btn-info btn-sm">
-                        Ubah Nama</button
+                      <a href="<?= base_url("/penulis/formUbah/$val->id") ?>">
+                        <button type="button" class="btn btn-info btn-sm">
+                          Ubah Nama</button
+                        >
+                      </a>
+                      <form
+                        action="<?= base_url("penulis/hapus") ?>"
+                        method="post"
+                        class="d-inline"
                       >
-                    </a>
-                    <a href="#">
-                      <button type="button" class="btn btn-danger btn-sm">
-                        Hapus</button
-                      >
-                    </a>
+                        <input type="hidden" name="id2" value="<?= $val->id ?>">
+                        <input type="hidden" name="hapus2" value="hapus">
+                        <button
+                          type="submit"
+                          class="btn btn-danger btn-sm"
+                          onclick="return confirm(
+                            `Apakah anda yakin ingin menghapus penulis ini?`
+                          )"
+                        >
+                          Hapus
+                        </button>
+                      </form>
                     </td>
                   </tr>
                   <?php endforeach; ?>
@@ -63,6 +75,5 @@
     </div>
   </div>
 </div>
-
 
 <?= $this->endSection(); ?>

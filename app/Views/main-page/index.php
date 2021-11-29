@@ -7,141 +7,53 @@
       <div class="row">
         <div class="col">
           <div class="book_list">
-            <h1 class="mt-1">Editor's Choice</h1>
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Cover</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Book's Detail</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>
-                      <img
-                        src=""
-                        alt="photo"
-                        class="sampul"
-                        width="100"
-                      />
-                    </td>
-                    <td>Pemrograman Dasar</td>
-                    <td><a href="" class="btn btn-success">Detail</a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>
-                      <img
-                        src=""
-                        alt="photo"
-                        class="sampul"
-                        width="100"
-                      />
-                    </td>
-                    <td>Pemrograman Dasar</td>
-                    <td><a href="" class="btn btn-success">Detail</a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>
-                      <img
-                        src=""
-                        alt="photo"
-                        class="sampul"
-                        width="100"
-                      />
-                    </td>
-                    <td>Pemrograman Dasar</td>
-                    <td><a href="" class="btn btn-success">Detail</a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>
-                      <img
-                        src=""
-                        alt="photo"
-                        class="sampul"
-                        width="100"
-                      />
-                    </td>
-                    <td>Pemrograman Dasar</td>
-                    <td><a href="" class="btn btn-success">Detail</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="book_list">
             <h1 class="mt-1">Most Viewed</h1>
+            <?php if(session()->getFlashdata('Sukses')): ?>
+            <div class="alert alert-success mt-3" role="alert">
+              <?= session()->getFlashdata('Sukses'); ?>
+            </div>
+            <?php endif; ?>
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Cover</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Book's Detail</th>
+                    <th>No</th>
+                    <th>Cover</th>
+                    <th>Title</th>
+                    <th>Kategori</th>
+                    <th>Book's Detail</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <?php foreach($listBuku as $ebook) :?>
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row"><?= $pageNo++; ?></th>
                     <td>
                       <img
-                        src=""
+                        src="<?= base_url()."/uploads/cover/{$ebook->sampul}"; ?>"
                         alt="photo"
                         class="sampul"
                         width="100"
                       />
                     </td>
-                    <td>Pemrograman Dasar</td>
-                    <td><a href="" class="btn btn-success">Detail</a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
+                    <td><?= $ebook->judul ?></td>
                     <td>
-                      <img
-                        src=""
-                        alt="photo"
-                        class="sampul"
-                        width="100"
-                      />
+                      <label class="badge <?= $ebook->badge ?>">
+                        <?= $ebook->kategori ?>
+                      </label>
                     </td>
-                    <td>Pemrograman Dasar</td>
-                    <td><a href="" class="btn btn-success">Detail</a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
                     <td>
-                      <img
-                        src=""
-                        alt="photo"
-                        class="sampul"
-                        width="100"
-                      />
+                      <a href="<?= base_url('buku/detailBuku')."/{$ebook->slug}" ?>"
+                         class="btn btn-success"
+                         target="_blank"
+                      >Detail
+                      </a>
                     </td>
-                    <td>Pemrograman Dasar</td>
-                    <td><a href="" class="btn btn-success">Detail</a></td>
                   </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>
-                      <img
-                        src=""
-                        alt="photo"
-                        class="sampul"
-                        width="100"
-                      />
-                    </td>
-                    <td>Pemrograman Dasar</td>
-                    <td><a href="" class="btn btn-success">Detail</a></td>
-                  </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
+              <?= $pager->links('ebook', 'ebook_pagination'); ?>
             </div>
           </div>
         </div>

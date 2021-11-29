@@ -3,9 +3,15 @@
 namespace App\Controllers;
 
 class Admin extends BaseController {
-  public function index()
+
+  public function __construct()
   {
     $this->model = new \Myth\Auth\Models\UserModel();
+  }
+
+  public function index()
+  {
+    $segments = $this->request->uri->getSegments();
 
     $this->data = [
       'title' => 'List User',
@@ -15,28 +21,18 @@ class Admin extends BaseController {
     return view('admin/index', $this->data);
   }
 
-  public function userList()
+  public function hapusUser()
   {
-    $segments = $this->request->uri->getSegments();
+    if ($this->request->getVar('hapus3') == null)
+      return redirect()->back();
+    
+    $id = $this->request->getVar('id3');
 
-    $users = new \Myth\Auth\Models\UserModel();
+    $this->model->deleteUserDownload($id);
+    $this->model->delete($id);
 
-    $db = \Config\Database::connect();
-    $query = $db->query("
-      SELECT U.id, U.username, U.email, U.nama_user, AG.name
-      FROM auth_groups AS AG,
-           users AS U,
-           auth_groups_users AS AGU
-      WHERE AGU.user_id = U.id
-        AND AGU.group_id = AG.id
-    ");
-
-    $this->data = [
-      'title' => 'List User',
-      'users' => $query->getResult(),
-      'segments' => $segments
-    ];
-    return view('admin/index', $this->data);
+    session()->setFlashdata('Sukses','Data berhasil dihapus!');
+    return redirect()->to(base_url('admin/index'));
   }
 
   // public function loginUser()

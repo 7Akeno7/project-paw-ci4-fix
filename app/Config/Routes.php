@@ -39,11 +39,11 @@ $routes->get(
      ['filter' => 'role:admin', 'as' => 'admin']
 );
 
-$routes->get(
-    '/admin/userList', 
-    'Admin::userList', 
-    ['filter' => 'role:admin', 'as' => 'userList']
-);
+// $routes->get(
+//     '/admin/userList', 
+//     'Admin::userList', 
+//     ['filter' => 'role:admin', 'as' => 'userList']
+// );
 
 $routes->get(
     '/penulis/index', 
@@ -87,8 +87,53 @@ $routes->get(
     ['filter' => 'role:admin', 'as' => 'formTambahBuku']
 );
 
+$routes->get(
+    '/buku/tambah', 
+    'Buku::tambah', 
+    ['filter' => 'role:admin', 'as' => 'tambahBuku']
+);
 
-$routes->get('/admin/index', 'Admin::index', ['filter' => 'role:admin']);
+$routes->get(
+    '/buku/formUbah/(:any)', 
+    'Buku::formUbah/$1', 
+    ['filter' => 'role:admin']
+);
+
+$routes->get(
+    '/buku/ubah', 
+    'Buku::ubah', 
+    ['filter' => 'role:admin', 'as' => 'ubahBuku']
+);
+
+$routes->get(
+    '/penulis/formUbah/(:any)', 
+    'Penulis::formUbah/$1', 
+    ['filter' => 'role:admin']
+);
+
+$routes->get(
+    '/penulis/ubah', 
+    'Penulis::ubah', 
+    ['filter' => 'role:admin', 'as' => 'ubahPenulis']
+);
+
+$routes->get(
+    '/penulis/hapus', 
+    'Penulis::hapus', 
+    ['filter' => 'role:admin']
+);
+
+$routes->get(
+    '/admin/hapusUser', 
+    'Admin::hapusUser', 
+    ['filter' => 'role:admin', 'as' => 'hapusUser']
+);
+
+$routes->get(
+    '/admin/index',
+    'Admin::index', 
+    ['filter' => 'role:admin', 'as' => 'userList']
+);
 
 /*
  * --------------------------------------------------------------------
