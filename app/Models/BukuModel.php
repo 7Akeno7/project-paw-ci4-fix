@@ -45,9 +45,8 @@ class BukuModel extends Model {
 
   public function getAllBooks() 
   {
-    $query = $this->select('id, judul, slug, kategori, sampul, badge')
-      ->orderBy('viewers', 'DESC')->get();
-    return $query->getResultObject();
+    return $this->select('id, judul, slug, kategori, sampul, badge')
+      ->orderBy('viewers', 'DESC');
   }
 
   public function getBookBySlug($slug)
@@ -106,4 +105,20 @@ class BukuModel extends Model {
 
     $this->where('slug', $slug)->delete();
   }
+
+  public function cariBuku($keyword)
+  {
+    return $this->select('id, judul, slug, kategori, sampul, badge')
+      ->like('judul',$keyword)
+      ->orLike('kategori',$keyword)
+      ->orderBy('viewers', 'DESC');
+  }
+
+  public function getBukuByKategori($kategori) 
+  {
+    return $this->select('id, judul, slug, kategori, sampul, badge')
+      ->like('kategori',$kategori)
+      ->orderBy('viewers', 'DESC');
+  }
+
 }

@@ -20,7 +20,7 @@
           <?php if(in_groups('admin')) { ?>
           <li class="
             nav-item
-            <?= isset($segments[1]) && $segments[1] == 'index' ? 
+            <?= isset($segments[0]) && $segments[0] == 'admin' ? 
               'active' : ''; ?>
           ">
             <a
@@ -36,10 +36,8 @@
 
           <li class="
             nav-item
-            <?= isset($segments[0]) && isset($segments[1]) && 
-                $segments[0] == 'penulis' && 
-                ($segments[1] == 'index' || $segments[1] == 'formTambah' )? 
-                'active' : ''; ?>
+            <?= isset($segments[0]) && $segments[0] == 'penulis' ? 
+              'active' : ''; ?> ?>
           ">
             <a
               class="nav-link"
@@ -86,27 +84,42 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
-                    >Teknologi</a
+                  <a 
+                    class="nav-link"
+                    href="<?= base_url('buku/getKategori/Teknologi') ?>"
+                    target="_blank"
+                  >Teknologi</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
+                  <a 
+                    class="nav-link" 
+                    href="<?= base_url('buku/getKategori/Kesenian') ?>"
+                    target="_blank"
                     >Kesenian</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
+                  <a
+                    class="nav-link"
+                    href="<?= base_url('buku/getKategori/Lingkungan') ?>"
+                    target="_blank"
                     >Lingkungan</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
+                  <a
+                    class="nav-link"
+                    href="<?= base_url('buku/getKategori/Sains') ?>"
+                    target="_blank"
                     >Sains</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"
+                  <a 
+                    class="nav-link"
+                    href="<?= base_url('buku/getKategori/Sosial') ?>"
+                    target="_blank"
                     >Sosial</a
                   >
                 </li>

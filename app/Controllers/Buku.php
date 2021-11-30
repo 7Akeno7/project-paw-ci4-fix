@@ -276,4 +276,46 @@ class Buku extends BaseController {
     }
     return redirect()->back();
   }
+
+  public function cariBuku()
+  {
+    $keyword = $this->request->getVar('keyword');
+
+    $current_page = $this->request->getVar('page_ebook') ? 
+        $this->request->getVar('page_ebook') : 1;
+
+    if ($keyword == null)
+      return redirect()->back();
+
+    $this->data = [
+      'title' => 'Ebook',
+      'keyword' => $keyword,
+      'segments' => $this->request->uri->getSegments(),
+      'listBuku' => $this->model->cariBuku($keyword)->paginate(6, 'ebook'),
+      'pager' => $this->model->pager,
+      'numberRow' => $this->model->cariBuku($keyword)->countAllResults(),
+      'pageNo' => 1 + (($current_page - 1) * 6)
+    ];
+
+    return view('main-page/cariBuku', $this->data);
+  }
+
+  public function getKategori($kategori)
+  {
+    $current_page = $this->request->getVar('page_ebook') ? 
+        $this->request->getVar('page_ebook') : 1;
+
+    $this->data = [
+      'title' => $kategori,
+      'segments' => $this->request->uri->getSegments(),
+      'listBuku' => $this->model->getBukuByKategori($kategori)
+        ->paginate(6, 'ebook'),
+      'pager' => $this->model->pager,
+      'numberRow' => $this->model->getBukuByKategori($kategori)
+        ->countAllResults(),
+      'pageNo' => 1 + (($current_page - 1) * 6)
+    ];
+
+    return view('main-page/cariBuku', $this->data);
+  }
 }

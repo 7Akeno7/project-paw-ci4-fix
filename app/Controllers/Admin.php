@@ -11,11 +11,11 @@ class Admin extends BaseController {
 
   public function index()
   {
-    $segments = $this->request->uri->getSegments();
 
     $this->data = [
       'title' => 'List User',
-      'users' => $this->model->getAllUser()
+      'users' => $this->model->getAllUser(),
+      'segments' => $this->request->uri->getSegments()
     ];
 
     return view('admin/index', $this->data);

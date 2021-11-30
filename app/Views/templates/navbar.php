@@ -48,7 +48,7 @@
               <i class="icon-search"></i>
             </span>
           </div>
-          <form action="buku/cariBuku">
+          <form action="<?= base_url('buku/cariBuku') ?>" method="get">
             <input
               type="text"
               class="form-control"
@@ -56,7 +56,7 @@
               placeholder="Search now"
               aria-label="search"
               aria-describedby="search"
-              name="cari"
+              name="keyword"
             />
           </form>
         </div>

@@ -12,16 +12,14 @@ class Home extends BaseController
     {
         $current_page = $this->request->getVar('page_ebook') ? 
         $this->request->getVar('page_ebook') : 1;
-
-        $pageNo= 1 + (($current_page - 1) * 6);
-
+        $listBuku = $this->model->getAllBooks();
+        
         $this->data = [
             'title' => 'Landing Page',
             'config' => config('Auth'),
-            // 'listBuku' => $this->model->getAllBooks()
-            'listBuku' => $this->model->paginate(6, 'ebook'),
+            'listBuku' => $listBuku->paginate(6, 'ebook'),
             'pager' => $this->model->pager,
-            'pageNo' => $pageNo
+            'pageNo' => 1 + (($current_page - 1) * 6)
         ];
         return view('main-page/index', $this->data);
     }
