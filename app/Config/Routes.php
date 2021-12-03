@@ -31,7 +31,8 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index', ['as' => 'main-page']);
+$routes->get('/', 'Home::index', ['as' => 'landing-page']);
+$routes->get('/home/ebook', 'Home::ebook', ['as' => 'main-page']);
 
 $routes->get(
     '/admin', 

@@ -13,7 +13,7 @@
             <?= view('Myth\Auth\Views\_message_block'); ?>
             <h4><?=lang('Auth.register')?></h4>
             <h6 class="font-weight-light">
-              Register is easy. It only takes a few steps
+              Hanya butuh beberapa langkah untuk registrasi
             </h6>
           
             <form 
@@ -96,7 +96,7 @@
                 <div class="form-check">
                   <label class="form-check-label text-muted">
                     <input type="checkbox" class="form-check-input" required/>
-                    I agree to all Terms &amp; Conditions
+                    Saya menyetujui syarat dan ketentuan yang berlaku
                     <i class="input-helper"></i
                   ></label>
                 </div>
@@ -111,11 +111,11 @@
                 ><?=lang('Auth.register')?></button>
               </div>
               <div class="text-center mt-4 font-weight-light">
-                <?=lang('Auth.alreadyRegistered')?>
+                Sudah Punya akun?
               <a 
                 href="<?= route_to('login') ?>" 
                 class="text-primary">
-                <?=lang('Auth.signIn')?></a
+                Login</a
               >
               </div>
             </form>

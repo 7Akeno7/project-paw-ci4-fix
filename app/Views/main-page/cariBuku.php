@@ -6,14 +6,20 @@
     <div class="container">
       <div class="row">
         <div class="col">
+          <h2 class="font-weight-bold">
+            <?php if (isset($kategori)) : ?>
+              <img 
+                src="<?php base_url() ?>/images/file-icons/512/<?= $img ?>.png" 
+                alt="test" 
+                srcset="" 
+                width="80px" 
+                style="padding-right:5px;">Kategori <?= $kategori ?>
+            <?php else : ?>
+              <?php echo "$numberRow results for \"$keyword\""?>
+            <?php endif; ?>
+          </h2>
           <div class="book_list">
             <h1 class="mt-1">
-              <?php 
-                if (isset($segments[2]))
-                  echo "Kategori $segments[2]";
-                else
-                  echo "$numberRow results for \"$keyword\"";
-              ?>
             </h1>
             <?php if(session()->getFlashdata('Sukses')): ?>
             <div class="alert alert-success mt-3" role="alert">
@@ -36,12 +42,7 @@
                   <tr>
                     <th scope="row"><?= $pageNo++; ?></th>
                     <td>
-                      <img
-                        src="<?= base_url()."/uploads/cover/{$ebook->sampul}"; ?>"
-                        alt="photo"
-                        class="sampul"
-                        width="100"
-                      />
+                    <img src="<?= base_url() . "/uploads/cover/{$ebook->sampul}"; ?>" alt="photo" class="sampul" width="auto" height="auto" style="width:7vw;height: auto; border-radius: 5%;" />
                     </td>
                     <td><?= $ebook->judul ?></td>
                     <td>

@@ -27,6 +27,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url(); ?>/css/vertical-layout-light/style.css" />
     <link rel="stylesheet" href="<?= base_url(); ?>/css/external/mikha.css" />
+    <link href="<?= base_url(); ?>/landing-page/img/open-book.png" rel="icon" />
     <!-- endinject -->
     <!-- Accordion -->
 

@@ -8,20 +8,33 @@ class Home extends BaseController
     {
         $this->model = new \App\Models\BukuModel();
     }
+
     public function index()
+    {
+        $this->data = [
+            'title' => 'Landing Page',
+        ];
+        if (!logged_in())
+            return view('main-page/index', $this->data);
+        else
+            return redirect()->to(base_url('home/ebook'));
+    }
+
+    public function ebook()
     {
         $current_page = $this->request->getVar('page_ebook') ? 
         $this->request->getVar('page_ebook') : 1;
         $listBuku = $this->model->getAllBooks();
         
         $this->data = [
-            'title' => 'Landing Page',
+            'title' => 'Home',
             'config' => config('Auth'),
-            'listBuku' => $listBuku->paginate(6, 'ebook'),
+            'listBuku' => $listBuku->paginate(5, 'ebook'),
             'pager' => $this->model->pager,
-            'pageNo' => 1 + (($current_page - 1) * 6)
+            'pageNo' => 1 + (($current_page - 1) * 5)
         ];
-        return view('main-page/index', $this->data);
+        
+        return view('main-page/home', $this->data);
     }
 
     // public function loginUser()

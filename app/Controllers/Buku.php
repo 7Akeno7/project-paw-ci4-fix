@@ -112,7 +112,7 @@ class Buku extends BaseController {
     $cover->move('uploads/cover/', $namaCover);
     $ebook->move('uploads/file/', $namaEbook);
     session()->setFlashdata('Sukses', 'Ebook berhasil ditambahkan');
-    return redirect()->to(base_url());
+    return redirect()->to(base_url('home/ebook'));
   }
 
   public function detailBuku($slug) 
@@ -213,7 +213,7 @@ class Buku extends BaseController {
         'errors' => ['mime_in' => 'File harus berformat pdf']
       ];
     
-    if (!$this->validate($validates))
+    if (!$this->validate($validates) && $ruleJudul != '')
     {
       $validation = \Config\Services::validation();
       session()->setFlashdata('errors', $validation->getErrors());
@@ -272,7 +272,7 @@ class Buku extends BaseController {
       $this->model->deleteBuku($slug);
 
       session()->setFlashdata('Sukses', 'Buku berhasil dihapus');
-      return redirect()->to(base_url());
+      return redirect()->to(base_url('home/ebook'));
     }
     return redirect()->back();
   }
@@ -302,18 +302,39 @@ class Buku extends BaseController {
 
   public function getKategori($kategori)
   {
+    switch ($kategori) {
+      case 'Teknologi':
+        $img = 'tech';
+        break;
+      case 'Kesenian':
+        $img = 'art';
+        break;
+      case 'Lingkungan':
+        $img = 'nature';
+        break;
+      case 'Sains':
+        $img = 'science';
+        break;
+      case 'Sosial':
+        $img = 'social';
+        break;
+      default:
+        return redirect()->back();
+      }
+    
     $current_page = $this->request->getVar('page_ebook') ? 
         $this->request->getVar('page_ebook') : 1;
 
     $this->data = [
       'title' => $kategori,
-      'segments' => $this->request->uri->getSegments(),
+      'kategori' => $kategori,
       'listBuku' => $this->model->getBukuByKategori($kategori)
         ->paginate(6, 'ebook'),
       'pager' => $this->model->pager,
       'numberRow' => $this->model->getBukuByKategori($kategori)
         ->countAllResults(),
-      'pageNo' => 1 + (($current_page - 1) * 6)
+      'pageNo' => 1 + (($current_page - 1) * 6),
+      'img' => $img
     ];
 
     return view('main-page/cariBuku', $this->data);

@@ -11,7 +11,7 @@
               <img src="<?= base_url();?>/images/samples/logo_class.png" alt="logo" />
             </div>
             <h4>Selamat datang di Ebook!</h4>
-            <h6 class="font-weight-light"><?=lang('Auth.loginTitle')?></h6>
+            <h6 class="font-weight-light">Log in</h6>
             <?= view('Myth\Auth\Views\_message_block') ?>
             <form class="pt-3" action="<?= route_to('login') ?>" method="post">
               <?= csrf_field() ?>
@@ -99,7 +99,7 @@
                       <?php if(old('remember')) : ?> checked <?php endif ?>
                       name = "remember" 
                     />
-                      <?=lang('Auth.rememberMe')?>
+                      Biarkan saya tetap masuk
                     <i class="input-helper"></i>
                   </label>
                 </div>
@@ -114,10 +114,10 @@
               </div>
               <?php if ($config->allowRegistration) : ?>
               <div class="text-center mt-4 font-weight-light">
-                <?=lang('Auth.needAnAccount')?>
+                Belum terdaftar?
                 <a
                   href="<?= route_to('register') ?>"
-                  class="text-primary">Create</a
+                  class="text-primary">Buat akun</a
                 >
               </div>
               <?php endif; ?>

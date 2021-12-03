@@ -22,16 +22,10 @@ class User extends BaseController {
     return view('user-profile/index', $this->data);
   }
 
-  public function loginUser()
+  public function logout()
   {
-    $this->data = ['title' => 'Login User'];
-    return view('auth/login-user', $this->data);
-  }
-
-  public function registerUser()
-  {
-    $this->data = ['title' => 'Register User'];
-    return view('auth/register-user', $this->data);
+    $this->model->logout();
+    return redirect()->to('/');
   }
 
   public function formUbahNama()

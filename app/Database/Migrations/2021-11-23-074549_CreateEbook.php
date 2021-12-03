@@ -12,7 +12,6 @@ class CreateEbook extends Migration
             'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'judul'            => ['type' => 'varchar', 'constraint' => 255],
             'slug'             => ['type' => 'varchar', 'constraint' => 255],
-            'cover'            => ['type' => 'varchar', 'constraint' => 255],
             'kategori'         => ['type' => 'varchar', 'constraint' => 255],
             'tahun_terbit'     => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'halaman'          => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'null' => true],
@@ -21,13 +20,13 @@ class CreateEbook extends Migration
             'viewers'          => ['type' => 'int', 'constraint' => 11, 'default' => 0],
             'sampul'           => ['type' => 'varchar', 'constraint' => 255],
             'file'             => ['type' => 'varchar', 'constraint' => 255],
+            'badge'            => ['type' => 'varchar', 'constraint' => 50],
             'created_at'       => ['type' => 'datetime', 'null' => true],
             'updated_at'       => ['type' => 'datetime', 'null' => true]
         ];
 
         $this->forge->addField($fields);
         $this->forge->addKey('id', true);
-        $this->forge->addUniqueKey('slug');
         $this->forge->createTable('ebook', true);
     }
 

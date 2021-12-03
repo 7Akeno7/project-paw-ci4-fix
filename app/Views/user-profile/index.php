@@ -8,15 +8,15 @@
       <div class="col-md-12 grid-margin">
         <div class="row">
           <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-            <h2 class="font-weight-bold">My Profile</h2>
+            <h2 class="font-weight-bold"><img src="<?php base_url() ?>/images/file-icons/512/userprofile.png" alt="test" srcset="" width="80px" style="padding-right:5px;">My Profile</h2>
           </div>
         </div>
         <div class="row">
           <div class="col-12 col-xl-12">
-            <?php if(session()->getFlashdata('Sukses')): ?>
-            <div class="alert alert-success mt-3" role="alert">
-              <?= session()->getFlashdata('Sukses'); ?>
-            </div>
+            <?php if (session()->getFlashdata('Sukses')) : ?>
+              <div class="alert alert-success mt-3" role="alert">
+                <?= session()->getFlashdata('Sukses'); ?>
+              </div>
             <?php endif; ?>
           </div>
         </div>
@@ -48,22 +48,21 @@
                       <p class="text-white"><?= user()->username ?></p>
                     </td>
                   </tr>
-                  <?php if(in_groups('admin')): ?>
-                  <tr>
-                    <td>
-                      <p class="text-white"><strong>Role</strong></p>
-                    </td>
-                    <td>
-                      <p class="text-white">Admin</p>
-                    </td>
-                  </tr>
+                  <?php if (in_groups('admin')) : ?>
+                    <tr>
+                      <td>
+                        <p class="text-white"><strong>Role</strong></p>
+                      </td>
+                      <td>
+                        <p class="text-white">Admin</p>
+                      </td>
+                    </tr>
                   <?php endif; ?>
                 </tbody>
               </table>
               <a href="<?= base_url("/user/formUbahNama") ?>">
                 <button type="button" class="btn btn-warning btn-sm">
-                  Ubah Nama</button
-                >
+                  Ubah Nama</button>
               </a>
             </div>
           </div>
