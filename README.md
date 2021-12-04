@@ -26,5 +26,5 @@ INSERT INTO `auth_groups_permissions` (`group_id`, `permission_id`) VALUES
 8. Lakukan migrasi lagi pada file yang ada di app/Database/Migrations. Terdapat 4 file migrasi. Pilih file CreateEbook, buka terminal, kemudian lakukan migrasi dengan 'php spark migrate -all'
 9. Jika terdapat error 'SQLite 3 Not Found' dan data migrasi tidak masuk di phpMyAdmin, buka file php.in, cari 'sqlite', kemudian hapus titik koma (;) pada baris 'extension=pdo_sqlite' dan extension=sqlite3'
 10. Jika sudah, lakukan migrasi dengan 'php spark migrate -all', seharusnya sudah berhasil terinstall di database
-11. Langkah selanjutnya yaitu melakukan seeding. Pertama buka file app/Database/Seeds. Kemudian buka terminal, dan jalankan perintah 'php spark db:seed EbookSeeder', 'php spark db:seed PenulisSeeder', dan 'php spark db:seed EbookHasSeeder'.
+11. Langkah selanjutnya yaitu melakukan seeding. Pertama buka file app/Database/Seeds. Kemudian buka terminal, dan jalankan perintah 'php spark db:seed EbookSeeder', 'php spark db:seed PenulisSeeder', dan 'php spark db:seed EbookHasPenulisSeeder'.
 12. Website sudah bisa digunakan, nanti user yang register bakal langsung dapet role user, kalo mau diubah jadi admin, di phpMyAdmin update tabel auth_groups_users, update row user yang pingin dijadikan admin, ganti auth_group_id nya dari 1 menjadi 2.
